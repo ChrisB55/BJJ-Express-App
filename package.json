@@ -1,7 +1,7 @@
 {
   "name": "mynodeproject",
   "version": "1.0.0",
-  "description": "express web project",
+  "description": "\"express web Project",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,6 +10,7 @@
   "author": "Chris B",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "gulp": "^3.9.1"
   }
 }
