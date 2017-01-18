@@ -30,7 +30,7 @@ app.use ('/guard', guardRouter);
 
 guardRouter.route('/')
     .get(function(req, res) {
-        res.render('guard'), {
+        res.render('guard', {
         title : 'render check', 
         nav: [{
             Link:'/guard', 
@@ -45,7 +45,7 @@ guardRouter.route('/')
             Link:'/takedowns', 
             Text: 'Takedowns'
         }]
-     };
+        });
 });
 
     guardRouter.route('/half')
