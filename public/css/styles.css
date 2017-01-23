@@ -45,7 +45,7 @@ a {
     position: absolute;
     right: 0;
     top: 0;
-    background-image:url('http://lorempixel.com/1024/760/nature/3/');
+    background-image:url(img/bjjImage.gif);
     background-size:cover;
     background-attachment:fixed;
 }
@@ -64,7 +64,7 @@ a {
 }
 
 #sidebar, #sidebar a {
-    color:#ffffff;
+    color:#000;
     background-color:transparent;
 	text-shadow:1px 0 1px #888888;
 }
