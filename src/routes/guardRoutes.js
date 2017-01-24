@@ -4,24 +4,24 @@ var guardRouter = express.Router();
 
 var guardMoves = [
     {
-        move: 'Triangle',
-        title: 'Closed Guard' 
+        move: 'Lockdown',
+        title: 'Half Guard' 
         },
     {
-        move: 'Sweep 1',
-        title: 'Half Guard'
-        },
-    {
-        move: 'Tripod Sweep',
+        move: 'De La Riva',
         title: 'Open Guard'
         },
     {
-        move: 'Windmill Sweep',
-        title: 'Spider Guard'
+        move: 'Spider Guard',
+        title: 'Open Guard'
         },
     {
-        move: 'Straight Arm-bar',
-        title: 'Butterfly Guard'
+        move: '50-50',
+        title: 'Seated Guard'
+        },
+    {
+        move: 'Butterly',
+        title: 'Open Guard'
         },
     {
         move: 'Ball and Chain',
@@ -38,13 +38,13 @@ var guardMoves = [
             Text: 'Guard'
         }, {
             Link:'/topgame', 
-            Text: 'Top Game'
+            Text: 'Top Game (Coming soon)'
         }, {
             Link: '/escapes', 
-            Text: 'Escapes'
+            Text: 'Escapes (Coming soon)'
         }, { 
             Link:'/takedowns', 
-            Text: 'Takedowns'
+            Text: 'Takedowns (Coming soon)'
         }], 
         guardMoves:guardMoves 
         });
