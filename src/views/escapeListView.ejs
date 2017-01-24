@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>BJJ Survival Guide</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css" />
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<div class="wrapper">
+    <div class="box">
+        <div class="row">
+            <!-- sidebar -->
+            <div class="column col-sm-3" id="sidebar">
+                <a class="logo" href="#">BJJ</a>
+                <ul class="nav">
+                   <% for(var i=0; i<nav.length;i++){%>
+                <li><a href="<%=nav[i].Link%>"><%=nav[i].Text%></a></li>
+            <%}%>
+                </ul>
+              
+            </div>
+            <!-- /sidebar -->
+          
+            <!-- main -->
+            <div class="column col-sm-9" id="main">
+                <div class="padding">
+                    <div class="full col-sm-9">
+                      
+                        <!-- content -->
+                        
+                        <div class="col-sm-12" id="featured">   
+                          <div class="page-header text-muted">
+                          Escapes and Counter to BJJ submissions
+                          </div> 
+                        </div>
+                        
+                        <!--/top story-->
+                        <% for(var i=0; i<escapes.length;i++){%>
+                        <div class="row">    
+                          <div class="col-sm-10">
+                            <h3><%=escapes[i].title%></h3>
+                            <h4><span class="label label-default">
+                            <%=escapes[i].attack%>
+                            </span></h4><h4>
+                            <small class="text-muted"><a href="/escapes/<%=i%>" class="text-muted">Learn More</a></small>
+                            </h4>
+                          </div>
+                          <div class="col-sm-2">
+                            <a href="#" class="pull-right"><img src="http://api.randomuser.me/portraits/thumb/men/19.jpg" class="img-circle"></a>
+                          </div> 
+                        </div>
+                        <%}%>  
+                      
+                        
+                    
+                      
+                        <div class="row">    
+                          <div class="col-sm-4 text-center">
+                            <h4>Related 1</h4>
+                            <a href="#"><img src="//placehold.it/400/f0f0f0" class="img-respsonsive img-circle"></a>
+                          </div>
+                          <div class="col-sm-4 text-center">
+                            <h4>Related 2</h4>
+                            <a href="#"><img src="//placehold.it/400/f0f0f0" class="img-respsonsive img-circle"></a>
+                          </div>
+                          <div class="col-sm-4 text-center">
+                            <h4>Related 3</h4>
+                            <a href="#"><img src="//placehold.it/400/f0f0f0" class="img-respsonsive img-circle"></a>
+                          </div>
+                        </div>
+                      
+                      
+                        <div class="col-sm-12">
+                          <div class="page-header text-muted divider">
+                            Connect with Us
+                          </div>
+                        </div>
+                      
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <a href="#">Twitter</a> <small class="text-muted">|</small> <a href="#">Facebook</a> <small class="text-muted">|</small> <a href="#">Google+</a>
+                          </div>
+                        </div>
+                        
+                        <hr>
+                      
+                        <div class="row" id="footer">    
+                          <div class="col-sm-6">
+                            
+                          </div>
+                          <div class="col-sm-6">
+                            <p>
+                            <a href="#" class="pull-right">©Copyright Inc.</a>
+                            </p>
+                          </div>
+                        </div>
+                      
+                      <hr>
+                      
+                      <h3 class="text-center">
+                      Enjoy!
+                      </h3>
+                        
+                      <hr>
+                        
+                      
+                    </div><!-- /col-9 -->
+                </div><!-- /padding -->
+            </div>
+            <!-- /main -->
+        </div>
+    </div>
+</div>
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+	</body>
+</html>
