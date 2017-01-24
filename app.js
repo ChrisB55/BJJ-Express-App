@@ -2,68 +2,41 @@ var express = require('express');
 
 var app = express();
 
-
 var port = 4000;
-
 var nav = [{
-    Link:'/guard', 
-    Text: 'Guard'
-        }, {
-    Link:'/topgame', 
-    Text: 'Top Game'
-        }, {
-    Link: '/escapes', 
+    Link: '/escapes',
     Text: 'Escapes'
-        }, { 
-    Link:'/takedowns', 
-    Text: 'Takedowns'
-}];
-
-var guardRouter = require('./src/routes/guardRoutes');
+    }, {
+    Link: '/attacks',
+    Text: 'By attack'
+    }];
+var escapesRouter = require('./src/routes/escapesRoutes')(nav);
 
 app.use(express.static('public'));
+app.set('views', './src/views');
 
-app.set('views', 'src/views');
 app.set('view engine', 'ejs');
 
-app.use ('/guard', guardRouter);
 
-app.get('/', function(req,res){
+app.use('/escapes', escapesRouter);
+
+app.get('/', function (req, res) {
     res.render('index', {
-        title : 'render check', 
+        title: 'Hello from render',
         nav: [{
-            Link:'/guard', 
-            Text: 'Guard'
+            Link: '/escapes',
+            Text: 'escapes'
         }, {
-            Link:'/topgame', 
-            Text: 'Top Game'
-        }, {
-            Link: '/escapes', 
-            Text: 'Escapes'
-        }, { 
-            Link:'/takedowns', 
-            Text: 'Takedowns'
+            Link: '/Attacks',
+            Text: 'By Attack'
         }]
     });
 });
 
-
-app.get('/guard', function(req,res){
-    res.send('Hello Guard');
+app.get('/escapes', function (req, res) {
+    res.send('Hello escapes');
 });
 
-app.get('/topgame', function(req,res){
-    res.send('Hello Top Game');
-});
-
-app.get('/escapes', function(req,res){
-    res.send('Hello Escapes');
-});
-
-app.get('/takedowns', function(req,res){
-    res.send('Hello takedowns');
-});
-
-app.listen(port,function(err){
-    console.log('running server on port' + port)
+app.listen(port, function (err) {
+    console.log('running server on port ' + port);
 });
