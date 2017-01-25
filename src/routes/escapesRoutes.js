@@ -3,44 +3,45 @@ var express = require('express');
 var escapeRouter = express.Router();
 
 var router = function(nav){
-    var escapes = [
+    var units = [
     {
         title: 'Hitchhicker',
-        comments: 'TBD',
+        description: 'Widely used against armbar from the mount.',
         attack: 'Armbar',
-        links: 'TBD'
-    },
+        examples: 'http://www.w3schools.com/'
+        
+        },
     {
         title: 'Triangle Spin Out',
-        comments: 'TBD',
+        description:  'A strong escape against a leg triangle submission from the guard.',
         attack: 'Triangle',
-        links: 'TBD'
+        
         },
     {
         title: 'Kimura spin under',
-        comments: 'TBD',
+        description:  'Used to counter a kimura submission from side control or north-south.',
         attack: 'Kimura',
-        links: 'TBD'
+        
         },
     {
         title: 'Choke block',
-        comments: 'TBD',
+        description: 'A strategy to avoid being choked from the back.',
         attack: 'RNC',
-        links: 'TBD'
+        
         },
     {
         title: 'Footlook escape',
-        comments: 'TBD',
+        description: 'One way to disentangle your legs and counter a basic ankle lock.',
         attack: 'Ankle lock',
-        links: 'TBD'
+        
         }
     ];
     escapeRouter.route('/')
     .get(function (req, res) {
         res.render('escapeListView', {
-            title: 'escapes',
+            title: 'List of Escapes',
             nav: nav,
-            escapes: escapes
+            units: units
         });
     });
 
@@ -48,9 +49,9 @@ var router = function(nav){
     .get(function (req, res) {
         var id = req.params.id;
         res.render('escapeView', {
-            title: 'escapes',
+            title: 'Escape',
             nav: nav,
-            escape: escapes[id]
+            unit: units[id]
         });
     });
     
