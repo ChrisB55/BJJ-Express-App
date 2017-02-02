@@ -1,4 +1,4 @@
 ## Jiu Jitsu Positions Web App
 
 ### Intro
-This web app will provide a list of moves and common scenarios from each of the major brazilian jiu jitsu positions. It is built with the Express (4.14.0) web framework thru the Node.JS runtime environment. 
+This web app provide a list of common escapes and counters used in brazilian jiu jitsu. It is built with the Express (4.14.0) web framework thru the Node.js runtime environment. In addition to Node.js and Express it utilizes EJS templating, Bootstrap and Gulp. An early version of the website can be viewed here: https://mybjjguide-app.herokuapp.com/. 
