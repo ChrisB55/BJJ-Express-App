@@ -1,5 +1,5 @@
 var express = require('express');
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser'); // Deprecated
 
 var app = express();
 
@@ -13,19 +13,21 @@ var nav = [{
     Text: 'By attack'
 }];
 var escapesRouter = require('./src/routes/escapesRoutes')(nav);
-//var adminRouter = require('./src/routes/adminRoutes')(nav);
-//var authRouter = require('./src/routes/authRoutes')(nav);
+var adminRouter = require('./src/routes/adminRoutes')(nav);
+var authRouter = require('./src/routes/authRoutes')(nav);
 
 app.use(express.static('public'));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.use('/escapes', escapesRouter);
-//app.use('/admin', adminRouter);
-//app.use('/auth', authRouter);
+app.use('/admin', adminRouter);
+app.use('/auth', authRouter);
 
 app.get('/', function (req, res) {
     res.render('index', {
