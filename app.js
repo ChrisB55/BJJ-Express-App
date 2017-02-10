@@ -1,5 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser'); // Deprecated
+var session = require('express-session'); // Deprecated
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
 
 var app = express();
 
@@ -21,6 +24,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
+app.use(session({secret:'bjj'}));
+
+require('./src/auth/passport')(app);
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
