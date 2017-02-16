@@ -1,63 +1,52 @@
 var express = require('express');
-
 var escapeRouter = express.Router();
+var mongodb = require('mongodb').MongoClient;
+var objectId = require('mongodb').ObjectID;
 
-var router = function(nav){
-    var units = [
-    {
-        title: 'Hitchhicker',
-        description: 'Widely used against armbar from the mount.',
-        attack: 'Armbar',
-        examples: 'https://www.youtube.com/watch?v=ShV9jUhbyLA'
-    },
-    {
-        title: 'Triangle Spin Out',
-        description:  'A strong escape against a leg triangle submission from the guard.',
-        attack: 'Triangle',
-        examples: 'https://www.youtube.com/watch?v=szAvJFvIzx4'
-
-    },
-    {
-        title: 'Kimura spin under',
-        description:  'Used to counter a kimura submission from side control or north-south.',
-        attack: 'Kimura',
-        examples: 'https://www.youtube.com/watch?v=AvtbqzGBVDA&list=PLRWboZ2QTrrtVqF0sQCzQgp4NvqFwNMKd&index=15'
-
-    },
-    {
-        title: 'Choke defense',
-        description: 'A strategy to avoid being choked from the back.',
-        attack: 'RNC',
-        examples: 'https://www.youtube.com/watch?v=JR2e0IsqhrQ'
-
-    },
-    {
-        title: 'Footlook escape',
-        description: 'One strategy to disentangle your legs and counter a basic ankle lock.',
-        attack: 'Ankle lock',
-        examples: 'https://www.youtube.com/watch?v=_VUybC7nCuE'
-
-    }
-    ];
+var router = function(nav) {
     escapeRouter.route('/')
     .get(function (req, res) {
-        res.render('escapeListView', {
-            title: 'List of Escapes',
-            nav: nav,
-            units: units
-        });
-    });
+        var url =
+                'mongodb://localhost:27017/bjjApp';
 
-    escapeRouter.route('/:id')
-    .get(function (req, res) {
-        var id = req.params.id;
-        res.render('escapeView', {
-            title: 'Escape',
-            nav: nav,
-            unit: units[id]
+        mongodb.connect(url, function (err, db) {
+            var collection = db.collection('units');
+
+            collection.find({}).toArray(
+                function (err, results) {
+                    res.render ('escapeListView', {
+                        title: 'units',
+                        nav:nav,
+                        units: results
+                    });
+                }
+            );
+
         });
     });
-    
+    escapeRouter.route('/:id')
+        .get(function (req, res) {
+            var id = new objectId(req.params.id);
+            var url =
+                'mongodb://localhost:27017/libraryApp';
+
+            mongodb.connect(url, function (err, db) {
+                var collection = db.collection('units');
+
+                collection.findOne({_id: id},
+                    function (err, results) {
+                        res.render('escapeView', {
+                            title: 'units',
+                            nav: nav,
+                            unit: results
+                        });
+
+                    }
+                );
+
+            });
+
+        });
     return escapeRouter;
-}
+};
 module.exports = router;
