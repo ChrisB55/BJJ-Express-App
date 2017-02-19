@@ -1,52 +1,29 @@
 var express = require('express');
-var escapeRouter = express.Router();
-var mongodb = require('mongodb').MongoClient;
-var objectId = require('mongodb').ObjectID;
+var router = express.Router();
+var ObjectId = require('mongodb').ObjectID;
 
-var router = function(nav) {
-    escapeRouter.route('/')
-    .get(function (req, res) {
-        var url =
-                'mongodb://localhost:27017/bjjApp';
 
-        mongodb.connect(url, function (err, db) {
-            var collection = db.collection('units');
-
-            collection.find({}).toArray(
-                function (err, results) {
-                    res.render ('escapeListView', {
+router.get('/', (req, res) => {
+    req.db.collection('units')
+            .find({})
+            .toArray(function(err, results) {
+                res.render ('escapeListView', {
                         title: 'units',
-                        nav:nav,
                         units: results
                     });
-                }
-            );
-
-        });
-    });
-    escapeRouter.route('/:id')
-        .get(function (req, res) {
-            var id = new objectId(req.params.id);
-            var url =
-                'mongodb://localhost:27017/libraryApp';
-
-            mongodb.connect(url, function (err, db) {
-                var collection = db.collection('units');
-
-                collection.findOne({_id: id},
-                    function (err, results) {
-                        res.render('escapeView', {
-                            title: 'units',
-                            nav: nav,
-                            unit: results
-                        });
-
-                    }
-                );
-
             });
+});
+router.get('/:id', (req, res) => {
+    var _id = new ObjectId(req.params.id);
+    req.db.collection('units')
+            .findOne(
+                {_id},
+                (err, result) =>  {
+                    res.render('escapeView', {
+                        title: 'units',
+                        unit: result
+                    });
 
-        });
-    return escapeRouter;
-};
+                });
+});
 module.exports = router;
