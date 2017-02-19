@@ -4,6 +4,18 @@ var session = require('express-session'); // Deprecated
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
 
+var mongodb = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/bjjApp';
+var db;
+mongodb.connect(url, function (err, connection) {
+    if (err) {
+        console.log('Error:', err);
+        process.exit(-1);
+    }
+    console.log('DB Connected');
+    db = connection;
+});
+
 var app = express();
 
 var port = process.env.PORT || 4000;
@@ -15,9 +27,10 @@ var nav = [{
     Link: '/attacks',
     Text: 'By attack'
 }];
-var escapesRouter = require('./src/routes/escapesRoutes')(nav);
+var escapesRouter = require('./src/routes/escapesRoutes');
 var adminRouter = require('./src/routes/adminRoutes')(nav);
 var authRouter = require('./src/routes/authRoutes')(nav);
+
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -26,6 +39,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(session({secret:'bjj'}));
+app.use(function(req, res, next) {
+    req.db = db;
+    next();
+});
+app.locals.nav = nav;
 
 require('./src/auth/passport')(app);
 
